@@ -26,36 +26,38 @@ export default function Home() {
             priority
           />
         <div className="absolute inset-0 bg-black/20" />
-          <div className="absolute inset-0 flex items-end justify-between p-8 pb-16 z-10">
+          <div className="absolute inset-0 flex flex-col md:flex-row items-end justify-between p-4 md:p-8 pb-8 md:pb-16 z-10 gap-4">
             <div className="flex flex-col items-start justify-center">
-              <h1 className="text-4xl font-bold text-white">Noviembre</h1>
-              <p className="text-lg text-white">2025</p>
+              <h1 className="text-3xl md:text-4xl font-bold text-white">Noviembre</h1>
+              <p className="text-base md:text-lg text-white">2025</p>
             </div>
-            <Image src="/shakira/logo-horizontal.png" alt="Shakira" width={400} height={100} className="object-contain" />
+            <div className="w-48 md:w-[400px] h-12 md:h-[100px] relative">
+              <Image src="/shakira/logo-horizontal.png" alt="Shakira" fill className="object-contain object-left md:object-right" />
+            </div>
           </div>
         </div>
       </div>
       {/*Grid section */}
-      <div className="w-full py-16 px-8">
-        <h2 className="text-4xl font-bold text-center mb-4">Quito al Ritmo de Shakira</h2>
-        <h3 className="text-2xl text-blue-600 font-semibold text-center mb-12">Quito: donde cada calle tiene ritmo</h3>
+      <div className="w-full py-8 md:py-16 px-4 md:px-8">
+        <h2 className="text-2xl md:text-4xl font-bold text-center mb-2 md:mb-4">Quito al Ritmo de Shakira</h2>
+        <h3 className="text-lg md:text-2xl text-blue-600 font-semibold text-center mb-6 md:mb-12">Quito: donde cada calle tiene ritmo</h3>
         
-        <div className="grid grid-cols-3 gap-4 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-7xl mx-auto">
           {/* Imagen grande a la izquierda */}
-          <div className="col-span-2 relative h-[600px]">
+          <div className="md:col-span-2 relative h-[300px] md:h-[600px]">
             <Image src="/shakira/plaza-grande.jpg" alt="Plaza Grande Quito" fill className="object-cover" />
           </div>
           
           {/* Columna derecha con 3 imágenes */}
-          <div className="col-span-1 flex flex-col gap-4">
-            <div className="relative h-[292px]">
+          <div className="md:col-span-1 flex flex-col gap-4">
+            <div className="relative h-[200px] md:h-[292px]">
               <Image src="/shakira/basilica-noche.jpg" alt="Basílica de noche" fill className="object-cover" />
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="relative h-[292px]">
+              <div className="relative h-[150px] md:h-[292px]">
                 <Image src="/shakira/mitad-del-mundo.JPG" alt="Mitad del Mundo" fill className="object-cover object-left" />
               </div>
-              <div className="relative h-[292px]">
+              <div className="relative h-[150px] md:h-[292px]">
                 <Image src="/shakira/san-francisco.jpg" alt="San Francisco" fill className="object-cover" />
               </div>
             </div>
@@ -63,73 +65,73 @@ export default function Home() {
         </div>
         
         {/* Botón */}
-        <div className="flex justify-center mt-12">
-          <button className="bg-blue-900 text-white px-12 py-3 text-lg font-semibold hover:bg-blue-800 transition">
+        <div className="flex justify-center mt-8 md:mt-12">
+          <button className="bg-blue-900 text-white px-8 md:px-12 py-2 md:py-3 text-base md:text-lg font-semibold hover:bg-blue-800 transition">
             JOIN NOW
           </button>
         </div>
       </div>
 
       {/* Descripción del tour */}
-      <div className="w-full bg-neutral-800 py-16 px-8">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 gap-12 items-center">
-          <div className="text-white">
-            <h2 className="text-4xl font-bold mb-6">Descripción del tour</h2>
-            <p className="text-lg leading-relaxed mb-4">
+      <div className="w-full bg-neutral-800 py-8 md:py-16 px-4 md:px-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center">
+          <div className="text-white order-2 md:order-1">
+            <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6">Descripción del tour</h2>
+            <p className="text-base md:text-lg leading-relaxed mb-3 md:mb-4">
               Vive Quito como nunca antes: un tour diseñado para que combines cultura, música y emoción.
             </p>
-            <p className="text-lg leading-relaxed">
+            <p className="text-base md:text-lg leading-relaxed">
               Disfruta del concierto de Shakira, recorre el Centro Histórico o la Mitad del Mundo y siente la energía de una ciudad que late al ritmo de los grandes eventos. Incluye traslados, alojamiento y experiencias pensadas para viajeros que quieren vivir Quito con estilo y buen ritmo.
             </p>
           </div>
-          <div className="relative h-[500px]">
-            <Image src="/shakira/shakira-baile.jpg" alt="Shakira" fill className="object-cover" />
+          <div className="relative h-[300px] md:h-[500px] order-1 md:order-2">
+            <Image src="/shakira/shakira-baile.jpg" alt="Shakira" fill className="object-cover rounded-lg md:rounded-none" />
           </div>
         </div>
       </div>
 
       {/* Paquetes turísticos */}
-      <div className="w-full py-16 px-8">
-        <div className="max-w-5xl mx-auto space-y-8">
+      <div className="w-full py-8 md:py-16 px-4 md:px-8">
+        <div className="max-w-5xl mx-auto space-y-6 md:space-y-8">
           {/* Paquete 4 Días - 3 Noches */}
-          <div className="border-2 border-gray-300 rounded-lg p-8 bg-orange-50">
-            <div className="grid grid-cols-2 gap-8 items-start">
+          <div className="border-2 border-gray-300 rounded-lg p-4 md:p-8 bg-orange-50">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 items-start">
               <div>
-                <h3 className="text-3xl font-bold mb-6">4 Días-3 Noches</h3>
-                <p className="text-gray-700 leading-relaxed mb-4">
+                <h3 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">4 Días-3 Noches</h3>
+                <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-3 md:mb-4">
                   Llegas a Quito y la ciudad te recibe con su energía. Te preparas para cantar con Shakira en una noche que vas a recordar, exploras la ciudad a tu ritmo entre historia o Mitad del Mundo, y cuando llega el momento de volver, te llevas más que fotos: te llevas una experiencia vivida con emoción y buen ritmo.
                 </p>
-                <p className="text-gray-700 leading-relaxed mb-6">Día 1.-</p>
+                <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-4 md:mb-6">Día 1.-</p>
                 <button 
                   onClick={() => openModal('4d3n')}
-                  className="text-sm font-semibold text-gray-600 hover:text-gray-800 tracking-wider transition"
+                  className="text-xs md:text-sm font-semibold text-gray-600 hover:text-gray-800 tracking-wider transition"
                 >
                   LEARN MORE
                 </button>
               </div>
-              <div className="relative h-[300px]">
+              <div className="relative h-[200px] md:h-[300px]">
                 <Image src="/shakira/mitad-del-mundo.JPG" alt="Mitad del Mundo" fill className="object-cover rounded" />
               </div>
             </div>
           </div>
 
           {/* Paquete 3 Días - 2 Noches */}
-          <div className="border-2 border-gray-300 rounded-lg p-8 bg-orange-50">
-            <div className="grid grid-cols-2 gap-8 items-start">
+          <div className="border-2 border-gray-300 rounded-lg p-4 md:p-8 bg-orange-50">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 items-start">
               <div>
-                <h3 className="text-3xl font-bold mb-6">3 Días-2 Noches</h3>
-                <p className="text-gray-700 leading-relaxed mb-4">
+                <h3 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">3 Días-2 Noches</h3>
+                <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-3 md:mb-4">
                   Llegas a Quito y la ciudad te recibe con su energía. Te preparas para cantar con Shakira en una noche que vas a recordar, exploras la ciudad a tu ritmo entre historia o Mitad del Mundo, y cuando llega el momento de volver, te llevas más que fotos: te llevas una experiencia vivida con emoción y buen ritmo.
                 </p>
-                <p className="text-gray-700 leading-relaxed mb-6">Día 1.-</p>
+                <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-4 md:mb-6">Día 1.-</p>
                 <button 
                   onClick={() => openModal('3d2n')}
-                  className="text-sm font-semibold text-gray-600 hover:text-gray-800 tracking-wider transition"
+                  className="text-xs md:text-sm font-semibold text-gray-600 hover:text-gray-800 tracking-wider transition"
                 >
                   LEARN MORE
                 </button>
               </div>
-              <div className="relative h-[300px]">
+              <div className="relative h-[200px] md:h-[300px]">
                 <Image src="/shakira/quito-norte-noche.jpg" alt="Quito de noche" fill className="object-cover rounded" />
               </div>
             </div>
@@ -138,23 +140,23 @@ export default function Home() {
       </div>
 
       {/* Información importante */}
-      <div className="w-full py-8 px-8">
-        <div className="max-w-5xl mx-auto border-2 border-blue-400 rounded-lg p-6 bg-blue-50">
-          <h4 className="text-blue-600 font-bold text-center mb-2">Información Importante</h4>
-          <p className="text-gray-700 text-center text-sm">
+      <div className="w-full py-4 md:py-8 px-4 md:px-8">
+        <div className="max-w-5xl mx-auto border-2 border-blue-400 rounded-lg p-4 md:p-6 bg-blue-50">
+          <h4 className="text-blue-600 font-bold text-center mb-2 text-sm md:text-base">Información Importante</h4>
+          <p className="text-gray-700 text-center text-xs md:text-sm">
             Los itinerarios están sujetos a cambios debido a diferentes razones como clima, seguridad u otros ajenos a Responsible Travel
           </p>
         </div>
       </div>
 
       {/* Banner Fechas Disponibles con Parallax */}
-      <div className="w-full relative h-[400px] overflow-hidden">
+      <div className="w-full relative h-[300px] md:h-[400px] overflow-hidden">
         <div className="absolute inset-0 bg-fixed bg-center bg-cover" style={{ backgroundImage: 'url(/shakira/shakira-modelo.jpg)' }}>
           <div className="absolute inset-0 bg-black/40" />
-          <div className="relative h-full flex items-center px-16">
+          <div className="relative h-full flex items-center px-4 md:px-16">
             <div className="text-white">
-              <h2 className="text-4xl font-bold mb-8">FECHAS DISPONIBLES</h2>
-              <ul className="space-y-3 text-xl font-semibold">
+              <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-8">FECHAS DISPONIBLES</h2>
+              <ul className="space-y-2 md:space-y-3 text-base md:text-xl font-semibold">
                 <li className="italic">Nov 07 -10, 2025</li>
                 <li className="italic">Nov 08 -11, 2025</li>
                 <li className="italic">Nov 10 – 13, 2025</li>
@@ -165,17 +167,17 @@ export default function Home() {
       </div>
 
       {/* Incluye / No Incluye */}
-      <div className="w-full py-16 px-8">
-        <div className="max-w-6xl mx-auto grid grid-cols-2 gap-12">
+      <div className="w-full py-8 md:py-16 px-4 md:px-8">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
           {/* Incluye */}
-          <div className="bg-gray-50 rounded-lg p-8">
-            <div className="flex items-start gap-4 mb-6">
-              <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
+          <div className="bg-gray-50 rounded-lg p-4 md:p-8">
+            <div className="flex items-start gap-3 md:gap-4 mb-4 md:mb-6">
+              <div className="relative w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden flex-shrink-0">
                 <Image src="/shakira/cocteles.jpg" alt="Incluye" fill className="object-cover" />
               </div>
-              <h3 className="text-2xl font-bold italic">&ldquo;Incluye&rdquo;</h3>
+              <h3 className="text-xl md:text-2xl font-bold italic">&ldquo;Incluye&rdquo;</h3>
             </div>
-            <ul className="space-y-3 text-sm text-gray-700">
+            <ul className="space-y-2 md:space-y-3 text-xs md:text-sm text-gray-700">
               <li>Traslado privado con conductor certificado de habla español en la ruta: Aeropuerto – hotel – aeropuerto</li>
               <li>• Traslado privado con conductor certificado de habla español (el día del concierto) en la ruta: Hotel – Estadio Olímpico Atahualpa – Hotel</li>
               <li>• 3 noches de alojamiento en Quito en el Hotel Río Amazonas en habitaciones sencilla, doble twin/ matrimonial o habitaciones triples de acuerdo a la solicitud del cliente, con desayuno incluido</li>
@@ -187,14 +189,14 @@ export default function Home() {
           </div>
 
           {/* No Incluye */}
-          <div className="bg-gray-50 rounded-lg p-8">
-            <div className="flex items-start gap-4 mb-6">
-              <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0 bg-gray-300">
+          <div className="bg-gray-50 rounded-lg p-4 md:p-8">
+            <div className="flex items-start gap-3 md:gap-4 mb-4 md:mb-6">
+              <div className="relative w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden flex-shrink-0 bg-gray-300">
                 {/* Aquí puedes agregar una imagen si la tienes */}
               </div>
-              <h3 className="text-2xl font-bold italic">&ldquo;No incluye&rdquo;</h3>
+              <h3 className="text-xl md:text-2xl font-bold italic">&ldquo;No incluye&rdquo;</h3>
             </div>
-            <ul className="space-y-3 text-sm text-gray-700">
+            <ul className="space-y-2 md:space-y-3 text-xs md:text-sm text-gray-700">
               <li>• Ticket aéreo local hacia la ciudad de Quito</li>
               <li>• Entrada al concierto de Shakira</li>
               <li>• Comidas y excursiones no especificadas en el itinerario</li>
@@ -204,18 +206,18 @@ export default function Home() {
             </ul>
           </div>
         </div>
-        <p className="text-center text-red-500 text-sm font-semibold mt-8">
+        <p className="text-center text-red-500 text-xs md:text-sm font-semibold mt-4 md:mt-8">
           IMPORTANTE: Precios por persona en base a la acomodación seleccionada.
         </p>
       </div>
 
       {/* Sección Destinos */}
-      <div className="w-full py-20 px-8 bg-white">
-        <div className="max-w-4xl mx-auto space-y-6">
+      <div className="w-full py-8 md:py-20 px-4 md:px-8 bg-white">
+        <div className="max-w-4xl mx-auto space-y-4 md:space-y-6">
           {/* Card Centro Histórico */}
-          <div className="rounded-2xl overflow-hidden shadow-2xl relative h-80">
-            {/* Imagen de fondo - solo mitad derecha */}
-            <div className="absolute inset-y-0 right-0 w-1/2">
+          <div className="rounded-2xl overflow-hidden shadow-2xl relative h-64 md:h-80">
+            {/* Imagen de fondo - solo mitad derecha en desktop, completa en mobile */}
+            <div className="absolute inset-0 md:inset-y-0 md:right-0 md:w-1/2">
               <Image 
                 src="/shakira/plaza-grande.jpg" 
                 alt="Centro Histórico de Quito" 
@@ -224,30 +226,30 @@ export default function Home() {
               />
             </div>
             
-            {/* Fondo oscuro hasta la mitad */}
-            <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-gray-900/90 to-gray-900" />
+            {/* Fondo oscuro hasta la mitad en desktop, completo semi-transparente en mobile */}
+            <div className="absolute inset-0 md:inset-y-0 md:left-0 md:w-1/2 bg-gradient-to-r from-gray-900/70 md:from-gray-900/90 to-gray-900/70 md:to-gray-900" />
             
             {/* Contenido de texto */}
-            <div className="absolute inset-0 p-8 flex flex-col justify-between text-white max-w-md">
+            <div className="absolute inset-0 p-4 md:p-8 flex flex-col justify-between text-white max-w-full md:max-w-md">
               <div>
-                <h3 className="text-orange-400 text-2xl font-bold mb-4">Centro Histórico</h3>
-                <h4 className="text-xl font-semibold mb-4 leading-tight">
+                <h3 className="text-orange-400 text-xl md:text-2xl font-bold mb-2 md:mb-4">Centro Histórico</h3>
+                <h4 className="text-base md:text-xl font-semibold mb-2 md:mb-4 leading-tight">
                   Descubre el corazón colonial de Quito en cada esquina
                 </h4>
-                <p className="text-gray-300 text-sm mb-4">
+                <p className="text-gray-300 text-xs md:text-sm mb-2 md:mb-4">
                   Oferta por tiempo limitado, no pierdas la oportunidad.
                 </p>
               </div>
-              <button className="bg-white text-gray-900 px-6 py-2 rounded-md font-semibold hover:bg-gray-100 transition w-fit">
+              <button className="bg-white text-gray-900 px-4 md:px-6 py-1.5 md:py-2 rounded-md text-sm md:text-base font-semibold hover:bg-gray-100 transition w-fit">
                 Book Now
               </button>
             </div>
           </div>
 
           {/* Card Mitad del Mundo */}
-          <div className="rounded-2xl overflow-hidden shadow-2xl relative h-80">
-            {/* Imagen de fondo - solo mitad derecha */}
-            <div className="absolute inset-y-0 right-0 w-1/2">
+          <div className="rounded-2xl overflow-hidden shadow-2xl relative h-64 md:h-80">
+            {/* Imagen de fondo - solo mitad derecha en desktop, completa en mobile */}
+            <div className="absolute inset-0 md:inset-y-0 md:right-0 md:w-1/2">
               <Image 
                 src="/shakira/mitad-del-mundo.JPG" 
                 alt="Mitad del Mundo" 
@@ -256,21 +258,21 @@ export default function Home() {
               />
             </div>
             
-            {/* Fondo oscuro hasta la mitad */}
-            <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-gray-900/90 to-gray-900" />
+            {/* Fondo oscuro hasta la mitad en desktop, completo semi-transparente en mobile */}
+            <div className="absolute inset-0 md:inset-y-0 md:left-0 md:w-1/2 bg-gradient-to-r from-gray-900/70 md:from-gray-900/90 to-gray-900/70 md:to-gray-900" />
             
             {/* Contenido de texto */}
-            <div className="absolute inset-0 p-8 flex flex-col justify-between text-white max-w-md">
+            <div className="absolute inset-0 p-4 md:p-8 flex flex-col justify-between text-white max-w-full md:max-w-md">
               <div>
-                <h3 className="text-orange-400 text-2xl font-bold mb-4">Mitad del Mundo</h3>
-                <h4 className="text-xl font-semibold mb-4 leading-tight">
+                <h3 className="text-orange-400 text-xl md:text-2xl font-bold mb-2 md:mb-4">Mitad del Mundo</h3>
+                <h4 className="text-base md:text-xl font-semibold mb-2 md:mb-4 leading-tight">
                   Pon un pie en cada hemisferio y siente el mundo desde el centro
                 </h4>
-                <p className="text-gray-300 text-sm mb-4">
+                <p className="text-gray-300 text-xs md:text-sm mb-2 md:mb-4">
                   Oferta por tiempo limitado, no pierdas la oportunidad.
                 </p>
               </div>
-              <button className="bg-white text-gray-900 px-6 py-2 rounded-md font-semibold hover:bg-gray-100 transition w-fit">
+              <button className="bg-white text-gray-900 px-4 md:px-6 py-1.5 md:py-2 rounded-md text-sm md:text-base font-semibold hover:bg-gray-100 transition w-fit">
                 Book Now
               </button>
             </div>
@@ -279,40 +281,40 @@ export default function Home() {
       </div>
 
       {/* Footer Premium */}
-      <footer className="w-full bg-gradient-to-b from-gray-900 to-black text-white py-16 px-8">
+      <footer className="w-full bg-gradient-to-b from-gray-900 to-black text-white py-8 md:py-16 px-4 md:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-4 gap-12 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-12 mb-8 md:mb-12">
             {/* Logo y descripción */}
-            <div className="col-span-1">
-              <div className="relative w-48 h-24 mb-6">
+            <div className="lg:col-span-1">
+              <div className="relative w-40 md:w-48 h-20 md:h-24 mb-4 md:mb-6">
                 <Image src="/shakira/logo-color.png" alt="Responsible Travel" fill className="object-contain object-left" />
               </div>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <p className="text-gray-400 text-xs md:text-sm leading-relaxed">
                 Experiencias únicas que combinan cultura, música y emoción en el corazón de Quito.
               </p>
             </div>
 
             {/* Quick Links */}
-            <div className="col-span-1">
-              <h4 className="text-lg font-bold mb-6 text-white">Enlaces Rápidos</h4>
-              <ul className="space-y-3">
+            <div className="lg:col-span-1">
+              <h4 className="text-base md:text-lg font-bold mb-4 md:mb-6 text-white">Enlaces Rápidos</h4>
+              <ul className="space-y-2 md:space-y-3">
                 <li>
-                  <a href="#paquetes" className="text-gray-400 hover:text-white transition text-sm">
+                  <a href="#paquetes" className="text-gray-400 hover:text-white transition text-xs md:text-sm">
                     Paquetes Turísticos
                   </a>
                 </li>
                 <li>
-                  <a href="#destinos" className="text-gray-400 hover:text-white transition text-sm">
+                  <a href="#destinos" className="text-gray-400 hover:text-white transition text-xs md:text-sm">
                     Destinos en Quito
                   </a>
                 </li>
                 <li>
-                  <a href="#fechas" className="text-gray-400 hover:text-white transition text-sm">
+                  <a href="#fechas" className="text-gray-400 hover:text-white transition text-xs md:text-sm">
                     Fechas Disponibles
                   </a>
                 </li>
                 <li>
-                  <a href="#concierto" className="text-gray-400 hover:text-white transition text-sm">
+                  <a href="#concierto" className="text-gray-400 hover:text-white transition text-xs md:text-sm">
                     Concierto Shakira
                   </a>
                 </li>
@@ -320,9 +322,9 @@ export default function Home() {
             </div>
 
             {/* Contacto */}
-            <div className="col-span-1">
-              <h4 className="text-lg font-bold mb-6 text-white">Contacto</h4>
-              <ul className="space-y-4 text-sm">
+            <div className="lg:col-span-1">
+              <h4 className="text-base md:text-lg font-bold mb-4 md:mb-6 text-white">Contacto</h4>
+              <ul className="space-y-3 md:space-y-4 text-xs md:text-sm">
                 <li className="flex items-start gap-3">
                   <svg className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -353,9 +355,9 @@ export default function Home() {
             </div>
 
             {/* Redes Sociales */}
-            <div className="col-span-1">
-              <h4 className="text-lg font-bold mb-6 text-white">Síguenos</h4>
-              <div className="flex gap-4">
+            <div className="lg:col-span-1">
+              <h4 className="text-base md:text-lg font-bold mb-4 md:mb-6 text-white">Síguenos</h4>
+              <div className="flex gap-3 md:gap-4">
                 <a href="#" className="w-10 h-10 bg-gray-800 hover:bg-blue-600 rounded-full flex items-center justify-center transition">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
@@ -377,16 +379,16 @@ export default function Home() {
                   </svg>
                 </a>
               </div>
-              <div className="mt-8">
+              <div className="mt-6 md:mt-8">
                 <p className="text-xs text-gray-500 mb-2">Métodos de pago</p>
                 <div className="flex gap-2">
-                  <div className="w-12 h-8 bg-gray-800 rounded flex items-center justify-center text-xs font-bold">
+                  <div className="w-10 md:w-12 h-7 md:h-8 bg-gray-800 rounded flex items-center justify-center text-xs font-bold">
                     VISA
                   </div>
-                  <div className="w-12 h-8 bg-gray-800 rounded flex items-center justify-center text-xs font-bold">
+                  <div className="w-10 md:w-12 h-7 md:h-8 bg-gray-800 rounded flex items-center justify-center text-xs font-bold">
                     MC
                   </div>
-                  <div className="w-12 h-8 bg-gray-800 rounded flex items-center justify-center text-xs font-bold">
+                  <div className="w-10 md:w-12 h-7 md:h-8 bg-gray-800 rounded flex items-center justify-center text-xs font-bold">
                     AMEX
                   </div>
                 </div>
@@ -395,25 +397,25 @@ export default function Home() {
           </div>
 
           {/* Divider */}
-          <div className="border-t border-gray-800 pt-8">
+          <div className="border-t border-gray-800 pt-6 md:pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <p className="text-gray-500 text-sm">
+              <p className="text-gray-500 text-xs md:text-sm text-center md:text-left">
                 &copy; {new Date().getFullYear()} Responsible Travel. Todos los derechos reservados.
               </p>
-              <div className="flex gap-6 text-sm">
-                <a href="#" className="text-gray-500 hover:text-white transition">
+              <div className="flex flex-col md:flex-row gap-3 md:gap-6 text-xs md:text-sm">
+                <a href="#" className="text-gray-500 hover:text-white transition text-center">
                   Términos y Condiciones
                 </a>
-                <a href="#" className="text-gray-500 hover:text-white transition">
+                <a href="#" className="text-gray-500 hover:text-white transition text-center">
                   Política de Privacidad
                 </a>
-                <a href="#" className="text-gray-500 hover:text-white transition">
+                <a href="#" className="text-gray-500 hover:text-white transition text-center">
                   Política de Cancelación
                 </a>
               </div>
             </div>
       </div>
-        </div>
+    </div>
       </footer>
 
       {/* Modal de Itinerario */}
