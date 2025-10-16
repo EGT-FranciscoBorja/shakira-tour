@@ -4,15 +4,23 @@ export default function Home() {
   return (
     <>
       {/*Hero section */}
-      <div className="flex flex-col items-center justify-center w-full relative h-screen">
-        <Image src="/shakira/portada.webp" alt="Shakira" fill className="object-cover object-top" />
-        <div className="absolute inset-0 bg-black/20" />
-        <div className="absolute inset-0 flex items-end justify-between p-8 pb-16 z-10">
-          <div className="flex flex-col items-start justify-center">
-            <h1 className="text-4xl font-bold text-white">Noviembre</h1>
-            <p className="text-lg text-white">2025</p>
+      <div className="relative h-screen bg-gradient-to-r from-[#0a1e2e] via-[#0c2838] to-[#0a1e2e] flex justify-center overflow-hidden">
+        <div className="relative w-full sm:w-full md:w-full lg:w-full xl:w-[1440px] 2xl:w-[1440px] h-screen">
+          <Image 
+            src="/shakira/portada.webp" 
+            alt="Shakira" 
+            fill 
+            className="object-cover" 
+            priority
+          />
+          <div className="absolute inset-0 bg-black/20" />
+          <div className="absolute inset-0 flex items-end justify-between p-8 pb-16 z-10">
+            <div className="flex flex-col items-start justify-center">
+              <h1 className="text-4xl font-bold text-white">Noviembre</h1>
+              <p className="text-lg text-white">2025</p>
+            </div>
+            <Image src="/shakira/logo-horizontal.png" alt="Shakira" width={400} height={100} className="object-contain" />
           </div>
-          <Image src="/shakira/logo-horizontal.png" alt="Shakira" width={400} height={100} className="object-contain" />
         </div>
       </div>
       {/*Grid section */}
@@ -317,8 +325,8 @@ export default function Home() {
                 </a>
               </div>
             </div>
-          </div>
-        </div>
+      </div>
+    </div>
       </footer>
     </>
   );
