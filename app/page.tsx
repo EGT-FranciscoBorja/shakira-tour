@@ -1,6 +1,18 @@
+'use client';
+
 import Image from "next/image";
+import { useState } from "react";
+import Itinerary from "@/components/Itinerary";
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState<'4d3n' | '3d2n'>('4d3n');
+
+  const openModal = (packageType: '4d3n' | '3d2n') => {
+    setSelectedPackage(packageType);
+    setIsModalOpen(true);
+  };
+
   return (
     <>
       {/*Hero section */}
@@ -13,7 +25,7 @@ export default function Home() {
             className="object-cover" 
             priority
           />
-          <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-black/20" />
           <div className="absolute inset-0 flex items-end justify-between p-8 pb-16 z-10">
             <div className="flex flex-col items-start justify-center">
               <h1 className="text-4xl font-bold text-white">Noviembre</h1>
@@ -88,9 +100,12 @@ export default function Home() {
                   Llegas a Quito y la ciudad te recibe con su energía. Te preparas para cantar con Shakira en una noche que vas a recordar, exploras la ciudad a tu ritmo entre historia o Mitad del Mundo, y cuando llega el momento de volver, te llevas más que fotos: te llevas una experiencia vivida con emoción y buen ritmo.
                 </p>
                 <p className="text-gray-700 leading-relaxed mb-6">Día 1.-</p>
-                <a href="#" className="text-sm font-semibold text-gray-600 hover:text-gray-800 tracking-wider">
+                <button 
+                  onClick={() => openModal('4d3n')}
+                  className="text-sm font-semibold text-gray-600 hover:text-gray-800 tracking-wider transition"
+                >
                   LEARN MORE
-                </a>
+                </button>
               </div>
               <div className="relative h-[300px]">
                 <Image src="/shakira/mitad-del-mundo.JPG" alt="Mitad del Mundo" fill className="object-cover rounded" />
@@ -107,9 +122,12 @@ export default function Home() {
                   Llegas a Quito y la ciudad te recibe con su energía. Te preparas para cantar con Shakira en una noche que vas a recordar, exploras la ciudad a tu ritmo entre historia o Mitad del Mundo, y cuando llega el momento de volver, te llevas más que fotos: te llevas una experiencia vivida con emoción y buen ritmo.
                 </p>
                 <p className="text-gray-700 leading-relaxed mb-6">Día 1.-</p>
-                <a href="#" className="text-sm font-semibold text-gray-600 hover:text-gray-800 tracking-wider">
+                <button 
+                  onClick={() => openModal('3d2n')}
+                  className="text-sm font-semibold text-gray-600 hover:text-gray-800 tracking-wider transition"
+                >
                   LEARN MORE
-                </a>
+                </button>
               </div>
               <div className="relative h-[300px]">
                 <Image src="/shakira/quito-norte-noche.jpg" alt="Quito de noche" fill className="object-cover rounded" />
@@ -189,6 +207,75 @@ export default function Home() {
         <p className="text-center text-red-500 text-sm font-semibold mt-8">
           IMPORTANTE: Precios por persona en base a la acomodación seleccionada.
         </p>
+      </div>
+
+      {/* Sección Destinos */}
+      <div className="w-full py-20 px-8 bg-white">
+        <div className="max-w-4xl mx-auto space-y-6">
+          {/* Card Centro Histórico */}
+          <div className="rounded-2xl overflow-hidden shadow-2xl relative h-80">
+            {/* Imagen de fondo - solo mitad derecha */}
+            <div className="absolute inset-y-0 right-0 w-1/2">
+              <Image 
+                src="/shakira/plaza-grande.jpg" 
+                alt="Centro Histórico de Quito" 
+                fill 
+                className="object-cover"
+              />
+            </div>
+            
+            {/* Fondo oscuro hasta la mitad */}
+            <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-gray-900/90 to-gray-900" />
+            
+            {/* Contenido de texto */}
+            <div className="absolute inset-0 p-8 flex flex-col justify-between text-white max-w-md">
+              <div>
+                <h3 className="text-orange-400 text-2xl font-bold mb-4">Centro Histórico</h3>
+                <h4 className="text-xl font-semibold mb-4 leading-tight">
+                  Descubre el corazón colonial de Quito en cada esquina
+                </h4>
+                <p className="text-gray-300 text-sm mb-4">
+                  Oferta por tiempo limitado, no pierdas la oportunidad.
+                </p>
+              </div>
+              <button className="bg-white text-gray-900 px-6 py-2 rounded-md font-semibold hover:bg-gray-100 transition w-fit">
+                Book Now
+              </button>
+            </div>
+          </div>
+
+          {/* Card Mitad del Mundo */}
+          <div className="rounded-2xl overflow-hidden shadow-2xl relative h-80">
+            {/* Imagen de fondo - solo mitad derecha */}
+            <div className="absolute inset-y-0 right-0 w-1/2">
+              <Image 
+                src="/shakira/mitad-del-mundo.JPG" 
+                alt="Mitad del Mundo" 
+                fill 
+                className="object-cover"
+              />
+            </div>
+            
+            {/* Fondo oscuro hasta la mitad */}
+            <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-gray-900/90 to-gray-900" />
+            
+            {/* Contenido de texto */}
+            <div className="absolute inset-0 p-8 flex flex-col justify-between text-white max-w-md">
+              <div>
+                <h3 className="text-orange-400 text-2xl font-bold mb-4">Mitad del Mundo</h3>
+                <h4 className="text-xl font-semibold mb-4 leading-tight">
+                  Pon un pie en cada hemisferio y siente el mundo desde el centro
+                </h4>
+                <p className="text-gray-300 text-sm mb-4">
+                  Oferta por tiempo limitado, no pierdas la oportunidad.
+                </p>
+              </div>
+              <button className="bg-white text-gray-900 px-6 py-2 rounded-md font-semibold hover:bg-gray-100 transition w-fit">
+                Book Now
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Footer Premium */}
@@ -326,8 +413,15 @@ export default function Home() {
               </div>
             </div>
       </div>
-    </div>
+        </div>
       </footer>
+
+      {/* Modal de Itinerario */}
+      <Itinerary 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        packageType={selectedPackage} 
+      />
     </>
   );
 }
