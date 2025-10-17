@@ -295,7 +295,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Footer Premium */}
+      {/* Footer Premium  */}
       <footer className="w-full bg-gradient-to-b from-gray-900 to-black text-white py-8 md:py-16 px-4 md:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-12 mb-8 md:mb-12">
