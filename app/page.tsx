@@ -239,7 +239,7 @@ export default function Home() {
               </li>
               <li className="flex items-start gap-2">
                 <FaRegCheckSquare className="text-green-600 text-base md:text-lg flex-shrink-0 mt-0.5" />
-                <span>3 noches de alojamiento en Quito en el Hotel Río Amazonas en habitaciones sencilla, doble twin/ matrimonial o habitaciones triples de acuerdo a la solicitud del cliente, con desayuno incluido</span>
+                <span>Alojamiento en Quito en el Hotel Río Amazonas en habitaciones sencilla, doble twin/ matrimonial o habitaciones triples de acuerdo a la solicitud del cliente, con desayuno incluido</span>
               </li>
               <li className="flex items-start gap-2">
                 <FaRegCheckSquare className="text-green-600 text-base md:text-lg flex-shrink-0 mt-0.5" />
