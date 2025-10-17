@@ -2,6 +2,13 @@ import React, { useState, useEffect } from 'react'
 import PhoneInput from 'react-phone-number-input'
 import 'react-phone-number-input/style.css'
 
+interface FormErrors {
+  name?: string
+  email?: string
+  phone?: string
+  message?: string
+}
+
 const Form = () => {
   const [phone, setPhone] = useState<string | undefined>('')
   const [name, setName] = useState<string>('')
@@ -9,6 +16,8 @@ const Form = () => {
   const [onmessage, setOnmessage] = useState<string>('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [errors, setErrors] = useState<FormErrors>({})
+  const [errorMessage, setErrorMessage] = useState<string>('')
 
   // Auto-hide success message after 5 seconds
   useEffect(() => {
@@ -21,28 +30,85 @@ const Form = () => {
     }
   }, [submitStatus])
 
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {}
+
+    // Validar nombre
+    if (!name.trim()) {
+      newErrors.name = 'El nombre es requerido'
+    } else if (name.trim().length < 2) {
+      newErrors.name = 'El nombre debe tener al menos 2 caracteres'
+    }
+
+    // Validar email
+    if (!email.trim()) {
+      newErrors.email = 'El email es requerido'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      newErrors.email = 'El email no es válido'
+    }
+
+    // Validar teléfono
+    if (!phone || !phone.trim()) {
+      newErrors.phone = 'El teléfono es requerido'
+    }
+
+    // Validar mensaje
+    if (!onmessage.trim()) {
+      newErrors.message = 'El mensaje es requerido'
+    } else if (onmessage.trim().length < 10) {
+      newErrors.message = 'El mensaje debe tener al menos 10 caracteres'
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setErrorMessage('')
+    setErrors({})
+    
+    // Validar formulario
+    if (!validateForm()) {
+      return
+    }
+
     setIsSubmitting(true)
     setSubmitStatus('idle')
     
     try {
-      const response = await fetch('/api/contact', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL
+      if (!apiUrl) {
+        throw new Error('Configuración incorrecta. Por favor, contacta al administrador.')
+      }
+
+      const response = await fetch(`${apiUrl}/shakira-lead`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name,
-          email,
+          name: name.trim(),
+          email: email.trim(),
           phone,
-          message: onmessage,
+          message: onmessage.trim(),
           type: 'contact_form'
         }),
       })
 
       if (!response.ok) {
-        throw new Error('Error al enviar formulario')
+        const errorData = await response.json().catch(() => ({}))
+        
+        // Mensajes específicos según el código de estado
+        if (response.status === 400) {
+          throw new Error('Los datos enviados no son válidos. Por favor, revisa la información.')
+        } else if (response.status === 500) {
+          throw new Error('Ocurrió un error en el servidor. Por favor, intenta nuevamente en unos minutos.')
+        } else if (response.status === 503) {
+          throw new Error('El servicio no está disponible temporalmente. Por favor, intenta más tarde.')
+        } else {
+          throw new Error(errorData.message || 'No pudimos procesar tu solicitud. Por favor, intenta nuevamente.')
+        }
       }
 
       setSubmitStatus('success')
@@ -52,9 +118,21 @@ const Form = () => {
       setEmail('')
       setPhone('')
       setOnmessage('')
+      setErrors({})
     } catch (error) {
       console.error('Error al enviar formulario:', error)
       setSubmitStatus('error')
+      
+      // Mensajes de error amigables
+      let friendlyMessage = 'Algo salió mal. Por favor, intenta nuevamente.'
+      
+      if (error instanceof TypeError && error.message === 'Failed to fetch') {
+        friendlyMessage = 'No pudimos conectar con el servidor. Por favor, verifica tu conexión a internet e intenta nuevamente.'
+      } else if (error instanceof Error) {
+        friendlyMessage = error.message
+      }
+      
+      setErrorMessage(friendlyMessage)
     } finally {
       setIsSubmitting(false)
     }
@@ -70,55 +148,107 @@ const Form = () => {
       
       {submitStatus === 'error' && (
         <div className="bg-red-600 text-white p-4 rounded-lg text-center mb-4 animate-in slide-in-from-top-2 duration-300">
-          Hubo un error al enviar tu consulta. Por favor, intenta nuevamente.
+          {errorMessage || 'Hubo un error al enviar tu consulta. Por favor, intenta nuevamente.'}
         </div>
       )}
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-[600px]">
         <div className="flex flex-col gap-4 w-full">
           {/* Name - Always full width */}
-          <input 
-            name="name"
-            type="text" 
-            placeholder="Name*" 
-            required 
-            className="bg-white text-black h-14 p-4 w-full border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#FFA600]" 
-            value={name} 
-            onChange={(e) => setName(e.target.value)} 
-          />
+          <div>
+            <input 
+              name="name"
+              type="text" 
+              placeholder="Nombre*" 
+              className={`bg-white text-black h-14 p-4 w-full border rounded focus:outline-none focus:ring-2 ${
+                errors.name 
+                  ? 'border-red-500 focus:ring-red-500' 
+                  : 'border-gray-300 focus:ring-[#FFA600]'
+              }`}
+              value={name} 
+              onChange={(e) => {
+                setName(e.target.value)
+                if (errors.name) {
+                  setErrors(prev => ({ ...prev, name: undefined }))
+                }
+              }} 
+            />
+            {errors.name && (
+              <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+            )}
+          </div>
           
           {/* Email and Phone - Side by side on desktop, stacked on mobile */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input 
-              name="email"
-              type="email" 
-              placeholder="E-mail*" 
-              required 
-              className="bg-white text-black h-14 p-4 w-full border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#FFA600]" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
-            />
-            <PhoneInput
-              name="phone"
-              international
-              defaultCountry="US"
-              value={phone}
-              onChange={setPhone}
-              placeholder="Phone*"
-              required
-              className="bg-white text-black h-14 p-4 w-full border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#FFA600]"
-            />
+            <div>
+              <input 
+                name="email"
+                type="email" 
+                placeholder="E-mail*" 
+                className={`bg-white text-black h-14 p-4 w-full border rounded focus:outline-none focus:ring-2 ${
+                  errors.email 
+                    ? 'border-red-500 focus:ring-red-500' 
+                    : 'border-gray-300 focus:ring-[#FFA600]'
+                }`}
+                value={email} 
+                onChange={(e) => {
+                  setEmail(e.target.value)
+                  if (errors.email) {
+                    setErrors(prev => ({ ...prev, email: undefined }))
+                  }
+                }} 
+              />
+              {errors.email && (
+                <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+              )}
+            </div>
+            <div>
+              <PhoneInput
+                name="phone"
+                international
+                defaultCountry="US"
+                value={phone}
+                onChange={(value) => {
+                  setPhone(value)
+                  if (errors.phone) {
+                    setErrors(prev => ({ ...prev, phone: undefined }))
+                  }
+                }}
+                placeholder="Teléfono*"
+                className={`bg-white text-black h-14 p-4 w-full border rounded focus:outline-none focus:ring-2 ${
+                  errors.phone 
+                    ? 'border-red-500 focus:ring-red-500' 
+                    : 'border-gray-300 focus:ring-[#FFA600]'
+                }`}
+              />
+              {errors.phone && (
+                <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+              )}
+            </div>
           </div>
           
           {/* Message - Always full width */}
-          <textarea 
-            name="message"
-            placeholder="Message*"
-            required
-            className="bg-white text-black h-20 p-4 w-full resize-none border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#FFA600]"
-            value={onmessage}
-            onChange={(e) => setOnmessage(e.target.value)}
-          />
+          <div>
+            <textarea 
+              name="message"
+              placeholder="Mensaje*"
+              className={`bg-white text-black h-20 p-4 w-full resize-none border rounded focus:outline-none focus:ring-2 ${
+                errors.message 
+                  ? 'border-red-500 focus:ring-red-500' 
+                  : 'border-gray-300 focus:ring-[#FFA600]'
+              }`}
+              value={onmessage}
+              onChange={(e) => {
+                setOnmessage(e.target.value)
+                if (errors.message) {
+                  setErrors(prev => ({ ...prev, message: undefined }))
+                }
+              }}
+            />
+            {errors.message && (
+              <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+            )}
+          </div>
         </div>
         <button 
           type="submit" 
