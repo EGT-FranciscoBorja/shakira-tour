@@ -1,0 +1,31 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "shakira-landing",
+	"main": ".open-next/worker.js",
+	"compatibility_date": "2025-03-01",
+	"compatibility_flags": [
+		"nodejs_compat",
+		"global_fetch_strictly_public"
+	],
+	"assets": {
+		"binding": "ASSETS",
+		"directory": ".open-next/assets"
+	},
+	"observability": {
+		"enabled": true
+	},
+	"dev": {
+		"ip": "0.0.0.0",
+		"port": 8787
+	},
+	"vars": {
+		"NEXT_PUBLIC_API_KEY": "gGO1 O5es yhgJ sAyY zZVB OCuJ",
+		"NEXT_PUBLIC_CDN_URL": "https://cdn.responsibletravelsa.com/",
+		"NEXT_PUBLIC_SITE_URL": "https://shakira-tour-ecuador.responsibletravelsa.com/",
+		"NEXT_PUBLIC_API_URL": "https://api.responsibletravelsa.com/api"
+	}
+}
